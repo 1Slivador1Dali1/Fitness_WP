@@ -37,17 +37,17 @@ Template Name: Шаблон "Главная страница"
                     <div class="smalltext">Секунд</div>
                 </div>
             </div>
-            <?php if( have_rows('main_g1') ): ?>
-            <?php while( have_rows('main_g1') ): the_row(); ?>
+            <?php if (have_rows('main_g1')) : ?>
+                <?php while (have_rows('main_g1')) : the_row(); ?>
 
-            <div class="header-form-text">
-                <h3><?php the_sub_field('main_g1_title'); ?></h3>
-                <div class="text"><?php the_sub_field('main_g1_subtitle'); ?></div>
-                <a href="index.html#modal-order" data-toggle="modal"><span class="pe-7s-call"></span></a>
-            </div>
+                    <div class="header-form-text">
+                        <h3><?php the_sub_field('main_g1_title'); ?></h3>
+                        <div class="text"><?php the_sub_field('main_g1_subtitle'); ?></div>
+                        <a href="index.html#modal-order" data-toggle="modal"><span class="pe-7s-call"></span></a>
+                    </div>
 
-            <?php endwhile; ?>
-            <?php endif; ?> 
+                <?php endwhile; ?>
+            <?php endif; ?>
 
 
         </div>
@@ -58,446 +58,31 @@ Template Name: Шаблон "Главная страница"
         <h2><?php the_field('sec2_title'); ?></h2>
         <div class="after-h2"><?php the_field('sec2_subtitle'); ?></div>
         <ul class="nav nav-pills">
-            <li class="active"><a data-toggle="pill" href="index.html#timing-tab1">Понедельник</a></li>
-            <li><a data-toggle="pill" href="index.html#timing-tab2">Вторник</a></li>
-            <li><a data-toggle="pill" href="index.html#timing-tab3">Среда</a></li>
-            <li><a data-toggle="pill" href="index.html#timing-tab4">Четверг</a></li>
-            <li><a data-toggle="pill" href="index.html#timing-tab5">Пятница</a></li>
-            <li><a data-toggle="pill" href="index.html#timing-tab6">Суббота</a></li>
+
+            <?php if (get_field('sec2_repeater')) : $i = 0; ?>
+                <?php while (has_sub_field('sec2_repeater')) : $i++ ?>
+                        <li><a data-toggle="pill" href="index.html#timing-tab<?php echo $i; ?>"><?php the_sub_field('sec2_repeater_day'); ?></a></li>
+                <?php endwhile; ?>
+            <?php endif; ?>
         </ul>
         <div class="tab-content">
-            <div id="timing-tab1" class="tab-pane fade in active">
+
+            <?php if(get_field('sec2_repeater')): $i = 0; ?>
+            <?php while(has_sub_field('sec2_repeater')) : $i++; ?>
+            <div id="timing-tab<?php echo $i; ?>" class="tab-pane fade in">
+            <?php if(get_sub_field('sec2_repeater_repeater')): ?>
+                <?php while(has_sub_field('sec2_repeater_repeater')) : ?>
                 <div class="time-box">
-                    <div class="time">8:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
+                    <div class="time"><?php the_sub_field('sec2_repeater_repeater_time'); ?></div>
+                    <div class="title"><?php the_sub_field('sec2_repeater_repeater_title'); ?></div>
+                    <div class="name"><?php the_sub_field('sec2_repeater_repeater_subtitle'); ?></div>
                 </div>
-                <div class="time-box">
-                    <div class="time">9:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Лукавенко Оксана</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">10:00</div>
-                    <div class="title">Functional training</div>
-                    <div class="name">Тренер: Суяркин Роман</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">16:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">17:00</div>
-                    <div class="title">Mind Body</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Body Sculpt</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Functional Fitness</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Мельник Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">20:00</div>
-                    <div class="title">Stretching</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
             </div>
-            <div id="timing-tab2" class="tab-pane fade">
-                <div class="time-box">
-                    <div class="time">8:30</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">9:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Лукавенко Оксана</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">10:00</div>
-                    <div class="title">Functional training</div>
-                    <div class="name">Тренер: Суяркин Роман</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">16:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">17:00</div>
-                    <div class="title">Mind Body</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Body Sculpt</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Functional Fitness</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Мельник Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">20:00</div>
-                    <div class="title">Stretching</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-            </div>
-            <div id="timing-tab3" class="tab-pane fade">
-                <div class="time-box">
-                    <div class="time">8:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">9:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Лукавенко Оксана</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">10:00</div>
-                    <div class="title">Functional training</div>
-                    <div class="name">Тренер: Суяркин Роман</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">16:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">17:00</div>
-                    <div class="title">Mind Body</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Body Sculpt</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Functional Fitness</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Мельник Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">20:00</div>
-                    <div class="title">Stretching</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-            </div>
-            <div id="timing-tab4" class="tab-pane fade">
-                <div class="time-box">
-                    <div class="time">8:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">9:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Лукавенко Оксана</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">10:00</div>
-                    <div class="title">Functional training</div>
-                    <div class="name">Тренер: Суяркин Роман</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">16:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">17:00</div>
-                    <div class="title">Mind Body</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Body Sculpt</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Functional Fitness</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Мельник Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">20:00</div>
-                    <div class="title">Stretching</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-            </div>
-            <div id="timing-tab5" class="tab-pane fade">
-                <div class="time-box">
-                    <div class="time">8:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">9:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Лукавенко Оксана</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">10:00</div>
-                    <div class="title">Functional training</div>
-                    <div class="name">Тренер: Суяркин Роман</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">16:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">17:00</div>
-                    <div class="title">Mind Body</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Body Sculpt</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Functional Fitness</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Мельник Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">20:00</div>
-                    <div class="title">Stretching</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-            </div>
-            <div id="timing-tab6" class="tab-pane fade">
-                <div class="time-box">
-                    <div class="time">8:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">9:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Лукавенко Оксана</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">10:00</div>
-                    <div class="title">Functional training</div>
-                    <div class="name">Тренер: Суяркин Роман</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Pilates</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">13:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">16:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">17:00</div>
-                    <div class="title">Mind Body</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Body Sculpt</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Шабалин Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">18:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Trx</div>
-                    <div class="name">Тренер: Грачева Любовь</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Functional Fitness</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">19:00</div>
-                    <div class="title">Crossfit</div>
-                    <div class="name">Тренер: Мельник Андрей</div>
-                </div>
-                <div class="time-box">
-                    <div class="time">20:00</div>
-                    <div class="title">Stretching</div>
-                    <div class="name">Тренер: Манаенко Кристина</div>
-                </div>
-            </div>
+            <?php endwhile; ?>
+            <?php endif; ?>
+
         </div>
     </div>
 </section>
