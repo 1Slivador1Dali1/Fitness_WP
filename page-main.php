@@ -10,6 +10,9 @@ Template Name: Шаблон "Главная страница"
         header {
             background-image: url(<?php the_field('main_img'); ?>);
         }
+        #sale {
+            background-image: url(<?php the_field('sec3_img'); ?>);
+        }
     </style>
 
     <div class="container">
@@ -88,8 +91,8 @@ Template Name: Шаблон "Главная страница"
 </section>
 <section id="sale">
     <div class="container">
-        <h2>Скидка <span>20%</span> на любые занятия</h2>
-        <div class="after-h2">Запишитесь на занятия сейчас и получите скидку во время оплаты</div>
+        <h2><?php the_field('sec3_title'); ?></h2>
+        <div class="after-h2"><?php the_field('sec3_subtitle'); ?></div>
         <a href="index.html#modal-order" data-toggle="modal" class="btn main-btn">Записаться сейчас</a>
     </div>
 </section>
