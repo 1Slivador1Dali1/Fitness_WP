@@ -199,46 +199,23 @@ Template Name: Шаблон "Главная страница"
         <h2>Отзывы клиентов</h2>
         <div class="after-h2">Что говорят люди о нашем спортивном комплексе</div>
         <div id="review-carousel" class="owl-carousel owl-loaded owl-drag">
+
+        <?php if(get_field('sec6_repeater')): ?>
+            <?php while(has_sub_field('sec6_repeater')) : ?>
             <div class="owl-item ">
                 <div>
                     <div class="review-box">
                         <div class="re">"</div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/review-item2.jpg">
+                        <img src="<?php the_sub_field('sec6_repeater_img'); ?>">
                         <div class="text">
-                            Отличный и современный фитнес клуб. Оплатил услугу персонального тренера, теперь у
-                            меня индивидуальная программа занятий и питания, через две недели результат на лицо. Очень доволен.
-                            Буду продолжать посещать.
+                            <?php the_sub_field('sec6_repeater_info'); ?>
                         </div>
-                        <div class="autor">Денис <span class="date">06.02.23</span></div>
+                        <div class="autor"><?php the_sub_field('sec6_repeater_name'); ?><span class="date"><?php the_sub_field('sec6_repeater_date'); ?></span></div>
                     </div>
                 </div>
             </div>
-            <div class="owl-item active">
-                <div>
-                    <div class="review-box">
-                        <div class="re">"</div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/review-item1.jpg">
-                        <div class="text">
-                            Фитнес-клуб мне очень понравился. Современные тренажеры, инструкторы – профессионалы
-                            высшего класса; удобные раздевалки, большой бассейн. Удобное месторасположение клуба.
-                        </div>
-                        <div class="autor">Ирина <span class="date">09.01.23</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="owl-item">
-                <div>
-                    <div class="review-box">
-                        <div class="re">"</div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/review-item3.jpg">
-                        <div class="text">
-                            Отличный клуб! Народу не так много, сам клуб достаточно большой, сделали неплохой ремонт,
-                            очередей на тренажеры нет даже в час пик. Тренеры - все приятные ребята. Хорошие массажисты есть при клубе :)
-                        </div>
-                        <div class="autor">Алексей <span class="date">02.03.23</span></div>
-                    </div>
-                </div>
-            </div>
+            <?php endwhile; ?>
+        <?php endif; ?>
         </div>
     </div>
 </section>
@@ -246,7 +223,7 @@ Template Name: Шаблон "Главная страница"
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <iframe src="./index_files/saved_resource.html" frameborder="0" allowfullscreen="true" width="100%" height="436px" style="display: block;"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3fa6c0a388424a1e7fd6fee3df8da23bc132a7f80bac65e9d54b69a4ff78d514&amp;source=constructor" width="100%" height="575" frameborder="0"></iframe>
                 <div class="contact-card">
                     <h2>Наши контакты</h2>
                     <div class="contact-item"><span>Адрес:</span>Москва, ул. Большая, д.10</div>
