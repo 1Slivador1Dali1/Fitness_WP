@@ -100,66 +100,40 @@ Template Name: Шаблон "Главная страница"
 </section>
 <section id="sport">
     <div class="container">
-        <div class="col-md-8 col-sm-12">
-            <div class="sport-box sp1">
-                <div class="sport-over">
-                    <span class="title">Силовой тренинг</span>
-                    <div class="text">От <span>2500</span> рублей в месяц</div>
-                    <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/sport-item1.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <div class="sport-box sp3">
-                <div class="sport-over">
-                    <span class="title">Кроссфит</span>
-                    <div class="text">От <span>2990</span> рублей в месяц</div>
-                    <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/sport-item3.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="sport-box sp2">
-                <div class="sport-over">
-                    <span class="title">Кардиотренинг</span>
-                    <div class="text">От <span>2700</span> рублей в месяц</div>
-                    <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/sport-item2.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="sport-box sp5">
-                <div class="sport-over">
-                    <span class="title">Боевые искусства</span>
-                    <div class="text">От <span>2000</span> рублей в месяц</div>
-                    <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/sport-item5.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <div class="sport-box sp4">
-                <div class="sport-over">
-                    <span class="title">Йога</span>
-                    <div class="text">От <span>8300</span> рублей в месяц</div>
-                    <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/sport-item4.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-8 col-sm-12">
-            <div class="sport-box sp6">
-                <div class="sport-over">
-                    <span class="title">Игровые программы</span>
-                    <div class="text">От <span>2300</span> рублей в месяц</div>
-                    <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/img/sport-item6.jpg" alt="">
-            </div>
-        </div>
+
+
+
+        <?php
+        $args = array(
+            'post_type' => 'post',
+            'post_status' => 'publish',
+            'posts_per_page' => 5, // Количество записей
+        );
+
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) :
+        ?>
+
+            <ul>
+                <?php while ($query->have_posts()) : $query->the_post(); ?>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="sport-box sp1">
+                            <div class="sport-over">
+                                <span class="title"><?php the_title(); ?></span>
+                                <div class="text">От <span><?php the_field('single_price'); ?></span> рублей в месяц</div>
+                                <a href="<?php the_permalink(); ?>" class="full-link"></a>
+                                <a href="index.html#modal-order" class="btn main-btn" data-toggle="modal">Записаться</a>
+                            </div>
+                            <img src="<?php the_field('single_img'); ?>" alt="">
+                        </div>
+                    </div>
+                <?php endwhile;
+                wp_reset_postdata(); ?>
+            </ul>
+
+        <?php endif; ?>
+
     </div>
 </section>
 <section id="about">
@@ -200,40 +174,25 @@ Template Name: Шаблон "Главная страница"
         <div class="after-h2">Что говорят люди о нашем спортивном комплексе</div>
         <div id="review-carousel" class="owl-carousel owl-loaded owl-drag">
 
-        <?php if(get_field('sec6_repeater')): ?>
-            <?php while(has_sub_field('sec6_repeater')) : ?>
-            <div class="owl-item ">
-                <div>
-                    <div class="review-box">
-                        <div class="re">"</div>
-                        <img src="<?php the_sub_field('sec6_repeater_img'); ?>">
-                        <div class="text">
-                            <?php the_sub_field('sec6_repeater_info'); ?>
+            <?php if (get_field('sec6_repeater')) : ?>
+                <?php while (has_sub_field('sec6_repeater')) : ?>
+                    <div class="owl-item ">
+                        <div>
+                            <div class="review-box">
+                                <div class="re">"</div>
+                                <img src="<?php the_sub_field('sec6_repeater_img'); ?>">
+                                <div class="text">
+                                    <?php the_sub_field('sec6_repeater_info'); ?>
+                                </div>
+                                <div class="autor"><?php the_sub_field('sec6_repeater_name'); ?><span class="date"><?php the_sub_field('sec6_repeater_date'); ?></span></div>
+                            </div>
                         </div>
-                        <div class="autor"><?php the_sub_field('sec6_repeater_name'); ?><span class="date"><?php the_sub_field('sec6_repeater_date'); ?></span></div>
                     </div>
-                </div>
-            </div>
-            <?php endwhile; ?>
-        <?php endif; ?>
+                <?php endwhile; ?>
+            <?php endif; ?>
         </div>
     </div>
 </section>
-<section id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A3fa6c0a388424a1e7fd6fee3df8da23bc132a7f80bac65e9d54b69a4ff78d514&amp;source=constructor" width="100%" height="575" frameborder="0"></iframe>
-                <div class="contact-card">
-                    <h2>Наши контакты</h2>
-                    <div class="contact-item"><span>Адрес:</span><?php the_field('site_address', 'options') ?></div>
-                    <div class="contact-item"><span>Телефон:</span> <a href="tel:<?php the_field('site_tel', 'options') ?>"><?php the_field('site_tel', 'options') ?></a></div>
-                    <div class="contact-item"><span>Email:</span> <a href="mailto:info@mail.ru"><?php the_field('site_email', 'options') ?></a></div>
-                    <div class="contact-item"><span>Часы работы:</span><?php the_field('site_worktime', 'options') ?></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <?php get_footer() ?>
