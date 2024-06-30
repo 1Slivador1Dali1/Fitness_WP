@@ -10,9 +10,6 @@ Template Name: Шаблон "Главная страница"
         header {
             background-image: url(<?php the_field('main_img'); ?>);
         }
-        #sale {
-            background-image: url(<?php the_field('sec3_img'); ?>);
-        }
     </style>
 
     <div class="container">
@@ -64,32 +61,37 @@ Template Name: Шаблон "Главная страница"
 
             <?php if (get_field('sec2_repeater')) : $i = 0; ?>
                 <?php while (has_sub_field('sec2_repeater')) : $i++ ?>
-                        <li><a data-toggle="pill" href="index.html#timing-tab<?php echo $i; ?>"><?php the_sub_field('sec2_repeater_day'); ?></a></li>
+                    <li><a data-toggle="pill" href="index.html#timing-tab<?php echo $i; ?>"><?php the_sub_field('sec2_repeater_day'); ?></a></li>
                 <?php endwhile; ?>
             <?php endif; ?>
         </ul>
         <div class="tab-content">
 
-            <?php if(get_field('sec2_repeater')): $i = 0; ?>
-            <?php while(has_sub_field('sec2_repeater')) : $i++; ?>
-            <div id="timing-tab<?php echo $i; ?>" class="tab-pane fade in">
-            <?php if(get_sub_field('sec2_repeater_repeater')): ?>
-                <?php while(has_sub_field('sec2_repeater_repeater')) : ?>
-                <div class="time-box">
-                    <div class="time"><?php the_sub_field('sec2_repeater_repeater_time'); ?></div>
-                    <div class="title"><?php the_sub_field('sec2_repeater_repeater_title'); ?></div>
-                    <div class="name"><?php the_sub_field('sec2_repeater_repeater_subtitle'); ?></div>
-                </div>
+            <?php if (get_field('sec2_repeater')) : $i = 0; ?>
+                <?php while (has_sub_field('sec2_repeater')) : $i++; ?>
+                    <div id="timing-tab<?php echo $i; ?>" class="tab-pane fade in">
+                        <?php if (get_sub_field('sec2_repeater_repeater')) : ?>
+                            <?php while (has_sub_field('sec2_repeater_repeater')) : ?>
+                                <div class="time-box">
+                                    <div class="time"><?php the_sub_field('sec2_repeater_repeater_time'); ?></div>
+                                    <div class="title"><?php the_sub_field('sec2_repeater_repeater_title'); ?></div>
+                                    <div class="name"><?php the_sub_field('sec2_repeater_repeater_subtitle'); ?></div>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                    </div>
                 <?php endwhile; ?>
-            <?php endif; ?>
-            </div>
-            <?php endwhile; ?>
             <?php endif; ?>
 
         </div>
     </div>
 </section>
 <section id="sale">
+    <style>
+        #sale {
+            background-image: url(<?php the_field('sec3_img'); ?>);
+        }
+    </style>
     <div class="container">
         <h2><?php the_field('sec3_title'); ?></h2>
         <div class="after-h2"><?php the_field('sec3_subtitle'); ?></div>
@@ -164,36 +166,30 @@ Template Name: Шаблон "Главная страница"
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <h2>О нас</h2>
-                <div class="after-h2">Рады Вас видеть на сайте нашего фитнес-центра!</div>
+                <h2><?php the_field('sec5_title'); ?></h2>
+                <div class="after-h2"><?php the_field('sec5_subtitle'); ?></div>
                 <div class="text">
                     <ul>
-                        <li>Наш клуб ставит своей первоочередной целью - предоставление качественных услуг в сфере фитнеса;</li>
-                        <li>Еще один немаловажный аспект нашей деятельности - доступные цены, ведь, как нам кажется, каждый должен иметь возможность уделить внимание своему здоровью и физической форме;</li>
-                        <li>Профессионализм - для нас не пустое слово, наши тренеры и инструкторы - обладатели спортивных разрядов и призеры соревнований по фитнесу, атлетике и силовым видам спорта;</li>
-                        <li>Мы приемлем только индивидуальный подход и готовы составить персональный план занятий для Вас с учетом особенностей и расставленных акцентов;</li>
-                        <li>Также для нас важны комфорт и качество, потому наши залы оснащены только современными тренажерами, в залах поддерживается оптимальная температура, а также к Вашим услугам удобные и просторные душевые кабинки и раздевалки.</li>
+                        <?php if (get_field('sec5_repeater')) : ?>
+                            <?php while (has_sub_field('sec5_repeater')) : ?>
+                                <li><?php the_sub_field('sec5_repeater_text'); ?></li>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
                 <a href="index.html#modal-order" data-toggle="modal" class="btn main-btn">Заказать сейчас</a>
             </div>
             <div class="col-sm-4">
-                <div class="about-item">
-                    <div class="num">22</div>
-                    <span>Клуба</span>По всей России
-                </div>
-                <div class="about-item">
-                    <div class="num">978</div>
-                    <span>Постоянных</span>Клиентов
-                </div>
-                <div class="about-item">
-                    <div class="num">74</div>
-                    <span>Лучших</span>Тренеров мира
-                </div>
-                <div class="about-item">
-                    <div class="num">980</div>
-                    <span>Квадратов</span>Площадь центра
-                </div>
+
+                <?php if (get_field('sec5_repeater_2')) : ?>
+                    <?php while (has_sub_field('sec5_repeater_2')) : ?>
+                        <div class="about-item">
+                            <div class="num"><?php the_sub_field('sec5_repeater_2_num'); ?></div>
+                            <span><?php the_sub_field('sec5_repeater_2_title'); ?></span><?php the_sub_field('sec5_repeater_2_info'); ?>
+                        </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
